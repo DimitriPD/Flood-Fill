@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         try {
-            String imagePath = "C:\\Users\\Dimitri\\Desktop\\Flood_Fill\\maça.png";
+            String imagePath = "C:\\Users\\Dimitri\\Desktop\\Flood_Fill\\maca.png";
             File file = new File(imagePath);
             if (!file.exists()) {
                 System.out.println("Arquivo de imagem não encontrado: " + file.getAbsolutePath());
@@ -41,32 +41,9 @@ public class Main {
                     return;
             }
 
-            mostrarAnimacao(diretorioFrames);
+            // floodFill.mostrarAnimacao(diretorioFrames);
         } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-
-    public static void mostrarAnimacao(String diretorioFrames) {
-        JFrame frame = new JFrame("Animação Flood Fill");
-        JLabel label = new JLabel();
-        frame.add(label);
-        frame.setSize(500, 500);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-        File diretorio = new File(diretorioFrames);
-        File[] arquivos = diretorio.listFiles((dir, name) -> name.endsWith("maça.png"));
-        if (arquivos != null && arquivos.length > 0) {
-            for (File arquivo : arquivos) {
-                try {
-                    BufferedImage img = ImageIO.read(arquivo);
-                    label.setIcon(new ImageIcon(img));
-                    frame.repaint();
-                    Thread.sleep(10L);
-                } catch (InterruptedException | IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 }
