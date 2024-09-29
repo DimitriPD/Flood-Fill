@@ -11,7 +11,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         try {
-            String imagePath = "C:\\Users\\Dimitri\\Desktop\\Flood_Fill\\maça.png";
+            String imageName = "maca.png";
+            String imagePath = System.getProperty("user.dir") + File.separator + imageName;
             File file = new File(imagePath);
             if (!file.exists()) {
                 System.out.println("Arquivo de imagem não encontrado: " + file.getAbsolutePath());
@@ -29,44 +30,26 @@ public class Main {
             System.out.println("2 - Fila");
             int escolha = scanner.nextInt();
 
+            System.out.print("Posição X: ");
+            int xPosition = scanner.nextInt();
+
+            System.out.print("Posição Y: ");
+            int yPosition = scanner.nextInt();
+
             switch (escolha) {
                 case 1:
-                    floodFill.floodFillPilha(10, 10);
+                    floodFill.floodFillPilha(xPosition, yPosition);
                     break;
                 case 2:
-                    floodFill.floodFillFila(10, 10);
+                    floodFill.floodFillFila(xPosition, yPosition);
                     break;
                 default:
                     System.out.println("Não temos essa opção");
                     return;
             }
 
-            mostrarAnimacao(diretorioFrames);
         } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-
-    public static void mostrarAnimacao(String diretorioFrames) {
-        JFrame frame = new JFrame("Animação Flood Fill");
-        JLabel label = new JLabel();
-        frame.add(label);
-        frame.setSize(500, 500);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-        File diretorio = new File(diretorioFrames);
-        File[] arquivos = diretorio.listFiles((dir, name) -> name.endsWith("maça.png"));
-        if (arquivos != null && arquivos.length > 0) {
-            for (File arquivo : arquivos) {
-                try {
-                    BufferedImage img = ImageIO.read(arquivo);
-                    label.setIcon(new ImageIcon(img));
-                    frame.repaint();
-                    Thread.sleep(10L);
-                } catch (InterruptedException | IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 }

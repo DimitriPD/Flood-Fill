@@ -13,9 +13,7 @@ public class Pixel {
         this.y = hash & 0xFFFF;
     }
 
-    //override porque vem da classe Objeto
     @Override
-    //Combinar as cordenadas como numero interiro, compactar elas
     public int hashCode() {
         return (x << 16) | (y & 0xFFFF);
     }
