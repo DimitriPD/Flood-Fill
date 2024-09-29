@@ -42,23 +42,19 @@ public class FloodFill {
                     pilha.push(new Pixel(x, y - 1));
                 }
 
-                // Salva um frame da imagem a cada 100000 pixels processados
-                if (frame % 10000 == 0) {
+                if (frame % 9000 == 0) {
                     String nomeArquivo = this.diretorioFrames + "imagem_final.png";
                     this.salvarImagem(nomeArquivo);
                     this.mostrarAnimacao(nomeArquivo);
                 }
             }
 
-            // Salva a imagem final
             this.salvarImagem(this.diretorioFrames + "imagem_final.png");
             this.mostrarAnimacao(this.diretorioFrames + "imagem_final.png");
         }
     }
-//Metodo para preencher com a estrutura de dados fila
     public void floodFillFila(int x, int y) throws Exception {
         this.corAntiga = new Color(this.image.getRGB(x, y));
-        //Serve para verificr se a cor antiga  é diferente da cor original
         if (!this.corAntiga.equals(this.novaCor)) {
             StaticQueue fila = new StaticQueue(this.image.getWidth() * this.image.getHeight());
             fila.add(new Pixel(x, y).hashCode());
@@ -74,14 +70,12 @@ public class FloodFill {
                     fila.add(new Pixel(x, y + 1).hashCode());
                     fila.add(new Pixel(x, y - 1).hashCode());
                 }
-                //Salvamento da imagem
-                if (frame % 10000 == 0) {
+                if (frame % 9000 == 0) {
                     String nomeArquivo = this.diretorioFrames + "imagem_final.png";
                     this.salvarImagem(nomeArquivo);
                     this.mostrarAnimacao(nomeArquivo);
                 }
             }
-            //Ultima imagem (Salvamento final)
             this.salvarImagem(this.diretorioFrames + "imagem_final.png");
             this.mostrarAnimacao(this.diretorioFrames + "imagem_final.png");
         }
